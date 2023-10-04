@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Title -->
+	<title>Create new account | Graindashboard UI Kit</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="public/img/favicon.ico">
+
+	<!-- Template -->
+	<link rel="stylesheet" href="public/graindashboard/css/graindashboard.css">
+</head>
+
+<body class="">
+
+	<main class="main">
+
+		<div class="content">
+
+			<div class="container-fluid pb-5">
+
+				<div class="row justify-content-md-center">
+					<div class="card-wrapper col-12 col-md-4 mt-5">
+						<div class="brand text-center mb-3">
+							<a href="/"><img src="public/img/logo.png"></a>
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Your Profile</h4>
+								<form>
+
+									<div class="form-group">
+										<label for="name">Name</label>
+										<input type="text" class="form-control" id="name" name="name" required=""
+											autofocus="">
+									</div>
+
+									<div class="form-group">
+										<label for="email">E-Mail Address</label>
+										<input id="email" type="email" class="form-control" name="email" required="">
+									</div>
+
+
+									<div class="form-group ">
+										<label for="password">Password
+										</label>
+										<input id="password" type="text" class="form-control" name="password"
+											required="">
+									</div>
+
+
+
+									<div class="form-group no-margin">
+										<button" onclick="profile()" class="btn btn-primary btn-block">
+											submit
+											</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<footer class="footer mt-3">
+							<div class="container-fluid">
+								<div class="footer-content text-center small">
+									<span class="text-muted">&copy; 2019 Graindashboard. All Rights Reserved.</span>
+								</div>
+							</div>
+						</footer>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</main>
+
+
+	<script src="public/graindashboard/js/graindashboard.js"></script>
+	<script src="public/graindashboard/js/graindashboard.vendor.js"></script>
+
+	<script type="text/javascript">
+		
+		let checklogin = JSON.parse(localStorage.getItem('checkuserlogin'));
+
+		if (!checklogin) {
+			window.location.href = "login.html";
+		}
+
+		let val = JSON.parse(localStorage.getItem('checkuserlogin'));
+
+		document.getElementById('name').value = val.username;
+		document.getElementById('email').value = val.useremail;
+		document.getElementById('password').value = val.userpassword;
+
+		function profile() {
+
+			let name = document.getElementById('name').value;
+			let email = document.getElementById('email').value;
+			let password = document.getElementById('password').value;
+
+			let allrecord = JSON.parse(localStorage.getItem('user'));
+
+
+			// console.log(allrecord);
+
+			for (let i in allrecord) {
+
+				if (allrecord[i].id == val.userid) {
+
+					console.log(allrecord[i].id);
+					allrecord[i].name = name;
+					allrecord[i].email = email;
+					allrecord[i].password = password;
+
+					val.username = name;
+					val.useremail = email;
+					val.userpassword = password;
+				}
+				localStorage.setItem('checkuserlogin', JSON.stringify(val));
+				localStorage.setItem('user', JSON.stringify(allrecord));
+			}
+			alert("Profile successfully update");
+			window.location.href = "dashboard.html";
+		}
+
+	</script>
+
+</body>
+
+</html>
